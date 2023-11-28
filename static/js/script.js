@@ -337,18 +337,19 @@ const Statistics = {
     }
   },
   async beforeMount() {
-    await fetch(host + '/analysis', {
-      method: "GET",
-      headers: { "Content-Type":"application/json", },
-    })
-    .then((res) => {
-      if(res.status == 200) {
-        res.json().then((data) => {
-          this.data=data
-        })
+    try {
+      const response = await fetch(host + '/analysis', {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
+      if(response.status === 200) {
+        this.data = await response.json();
+      } else {
+        console.error(`Request Failed with Status ${response.status}`);
       }
-    })
-    .catch(error => { console.log(error) })
+    } catch (error) {
+      console.error(error);
+    }
   },
   template:`
     <center v-if="error">
