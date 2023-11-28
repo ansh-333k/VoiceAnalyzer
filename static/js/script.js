@@ -344,8 +344,6 @@ const Statistics = {
       });
       if(response.status === 200) {
         this.data = await response.json();
-      } else {
-        console.error(`Request Failed with Status ${response.status}`);
       }
     } catch (error) {
       console.error(error);
