@@ -337,7 +337,7 @@ const Statistics = {
     }
   },
   beforeCreate() {
-    fetch(host + `/analysis`, {
+    fetch(host + '/analysis', {
       method: "GET",
       headers: { "Content-Type":"application/json", },
     })
